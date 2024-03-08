@@ -9,7 +9,18 @@ def compute_r2d2_population(steps: int) -> tuple[int, int, int]:
     :param steps: amount of steps to compute the population (e.g.: 5)
     :return: tuple of childs adults and old r2d2
     """
-    return (0, 0, 0)
+
+    r2_young = 10
+    r2_adult = 10
+    r2_old = 10
+
+    for _ in range(steps):
+        r2_newborns = int(r2_adult*4+r2_old*2)
+        r2_old = int(r2_adult/3)
+        r2_adult = int(r2_young/2)
+        r2_young = r2_newborns
+
+    return (r2_young, r2_adult, r2_old)
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
 # IMPLEMENT YOUR SOLUTION FOR THE STEICHHOLZSPIEL HERE
