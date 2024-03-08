@@ -24,7 +24,20 @@ def compute_r2d2_population(steps: int) -> tuple[int, int, int]:
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
 # IMPLEMENT YOUR SOLUTION FOR THE STEICHHOLZSPIEL HERE
-
+def nim_game():
+  computer=0
+  player=0
+  turn=0
+  
+  while computer+player<31:
+    if turn%2==0:
+      if turn == 0: computer+=2
+      else: computer+=player%7
+    else: player+=min(1, max(6, int(input('Nenne eine Zahl zwischen 1 und 6.'))))
+    
+  return 'player' if turn%2 else 'computer'
+    
+    
 
 # ---------------------Aufgabe 3 Heron ------------------------------------
 def heron_verfahren(area: float, threshold: float) -> float:
