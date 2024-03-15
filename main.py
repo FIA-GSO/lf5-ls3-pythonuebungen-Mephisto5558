@@ -61,12 +61,16 @@ def heron_verfahren(area: float, threshold: float) -> float:
     abweichung = a - b
     mittelwert = (a + b) / 2
 
-  return mittelwert # wrong because of float-precision
+  return mittelwert  # wrong because of float-precision
 
 
 # ---------------------Aufgabe 4 Quersumme------------------------------
 # IMPLEMENT, IF NECESSARY, EXERCISE 4 HERE BUT USE A FUNCTION!
-
+def sqrt(a: int) -> float:
+  """SQRT"""
+  
+  import math
+  return math.sqrt(a)
 
 # ---------------MANAGEMENT----------------------
 # -------------COMMENT/UNCOMMENT lines to launch the different exercises
