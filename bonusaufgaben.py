@@ -1,27 +1,39 @@
 from random import choice
 
 ARUKONE_GAMES: list[list[list[int | None]]] = [
-    [[[]]],
-    [[[]]],
+    [[
+        []
+    ]],
+    [[
+        []
+    ]],
     [[
         [1, None],
         [None, 1]
-    ],
-    [
+    ], [
         [None, 1],
         [1, None]
     ]],
     [[
-      [1, None, 2],
-      [None, 2, None],
-      [1, None, None]
-    ],
-      [None, 1, None],
-      [2, None, None],
-      [None, 2, 1]
+        [1, None, 2],
+        [None, 2, None],
+        [1, None, None]
+    ], [
+        [None, 1, None],
+        [2, None, None],
+        [None, 2, 1]
     ]],
-    [[], []],
-    [[], []]
+    [[
+        [1, 3, None, 2],
+        [None, 3, None, None],
+        [None, 2, None, 1],
+        [None, None, None, None]
+    ], [
+        [],
+        [],
+        [],
+        []
+    ]]
 ]
 
 def wundertuete(w: int, k: int, g: int, amount: int) -> list[list[int]]:
@@ -57,7 +69,7 @@ def arukone(n: int):
   muss immer 2 von jede zahl haben
   """
 
-  game = [[] for _ in range(n)]
+  game = ARUKONE_GAMES[n]
 
   for i in range(n / 2):
     """algo hier"""
