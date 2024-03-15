@@ -1,17 +1,25 @@
 from random import choice
 
 ARUKONE_GAMES: list[list[list[int | None]]] = [
-    [[]],
-    [[[1]]],
+    [[[]]],
+    [[[]]],
     [[
-        [1, 2],
-        [2, 1]
+        [1, None],
+        [None, 1]
     ],
-        [
-        [2, 1],
-        [1, 2]
+    [
+        [None, 1],
+        [1, None]
     ]],
-    [[], []],
+    [[
+      [1, None, 2],
+      [None, 2, None],
+      [1, None, None]
+    ],
+      [None, 1, None],
+      [2, None, None],
+      [None, 2, 1]
+    ]],
     [[], []],
     [[], []]
 ]
