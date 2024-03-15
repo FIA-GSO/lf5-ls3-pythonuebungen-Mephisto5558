@@ -1,5 +1,21 @@
 from random import choice
 
+ARUKONE_GAMES: list[list[list[int | None]]] = [
+    [[]],
+    [[[1]]],
+    [[
+        [1, 2],
+        [2, 1]
+    ],
+        [
+        [2, 1],
+        [1, 2]
+    ]],
+    [[], []],
+    [[], []],
+    [[], []]
+]
+
 def wundertuete(w: int, k: int, g: int, amount: int) -> list[list[int]]:
   """
   - Gleiche Gesamtzahl an Spielen (nach Möglichkeit)
@@ -28,16 +44,15 @@ def arukone(n: int):
   :param n >= 4
   Gittergröße n*n
   Mindestzahlanzahl n/2
-  
+
   Darf sich nicht kreuzen
   muss immer 2 von jede zahl haben
   """
 
   game = [[] for _ in range(n)]
-  
-  for i in range(n/2):
+
+  for i in range(n / 2):
     """algo hier"""
-  
 
 
 if __name__ == '__main__':
