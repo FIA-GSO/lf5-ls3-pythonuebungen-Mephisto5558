@@ -31,13 +31,27 @@ def nim_game():
   player = 0
   turn = 0
 
+  player_last_take = 0
+
   while computer + player < 31:
     if turn % 2 == 0:
-      if turn == 0: computer += 2
-      else: computer += player % 7
-    else: player += min(1, max(6, int(input('Nenne eine Zahl zwischen 1 und 6.'))))
+      if turn == 0:
+        print('Der Computer zieht 2.')
+        computer += 2
+      else:
+        num = 7 - player_last_take % 7
+        print(f'Der Computer zieht {num}.')
+        computer += num
+    else:
+      num = max(1, min(31 - computer - player, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, 31 - computer - player)}: '))))
+      print(f'Du ziehst {num}.')
+      player_last_take = num
+      player += num
 
-  return 'player' if turn % 2 else 'computer'
+    turn += 1
+    print(f'Es liegen noch {31 - player - computer} Hölzer.')
+
+  return 'computer' if turn % 2 else 'player'
 
 
 # ---------------------Aufgabe 3 Heron ------------------------------------
@@ -88,6 +102,7 @@ if __name__ == '__main__':
 
   # Aufgabe 2
   # TO BE IMPLEMENTED
+  print(f'Der Gewinner ist {nim_game()}!')
 
   # Aufgabe 3
   print(
