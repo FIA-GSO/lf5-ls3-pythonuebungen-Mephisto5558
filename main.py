@@ -49,12 +49,19 @@ def heron_verfahren(area: float, threshold: float) -> float:
   :return:the square root of the given area according to the heron method
   """
 
-  laenge_a = 0
-  laenge_b = 0
-  mittelwert = 0
-  abweichung = 0
+  a = area
+  b = 1
 
-  return 0
+  mittelwert = (a + b) / 2
+  abweichung = a - b
+
+  while abweichung >= threshold:
+    a = mittelwert
+    b = area / a
+    abweichung = a - b
+    mittelwert = (a + b) / 2
+
+  return mittelwert # wrong because of float-precision
 
 
 # ---------------------Aufgabe 4 Quersumme------------------------------
