@@ -39,7 +39,7 @@ def nim_game():
         print('Der Computer zieht 2.')
         computer += 2
       else:
-        num = 7 - player_last_take % 7
+        num = 7 - player_last_take
         print(f'Der Computer zieht {num}.')
         computer += num
     else:
