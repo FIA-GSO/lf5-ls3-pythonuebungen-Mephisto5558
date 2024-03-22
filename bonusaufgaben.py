@@ -1,6 +1,7 @@
 from random import choice
+from PIL import Image  # pip install Pillow
 
-ARUKONE_GAMES: list[list[list[int | None]]] = [
+ARUKONE_GAMES: list[list[list[list[int | None]]]] = [
     [[
         []
     ]],
@@ -29,10 +30,10 @@ ARUKONE_GAMES: list[list[list[int | None]]] = [
         [None, 2, None, 1],
         [None, None, None, None]
     ], [
-        [],
-        [],
-        [],
-        []
+        [None, 2, None, None],
+        [1, None, None, 3],
+        [None, 1, None, None],
+        [2, None, None, 3]
     ]]
 ]
 
@@ -54,10 +55,34 @@ def wundertuete(w: int, k: int, g: int, amount: int) -> list[list[int]]:
 
   return wundertueten
 
-def st_egano():
+def st_egano(filepath: str):
   """
-  Fürs erste geskippt wegen dateiauslesung
+  Fürs erste geskipped wegen dateiauslesung
+  start pixel oben links -> (r, g b)
+  r=ascii des 1. Zeichen der msg
+  g=pixel nach rechts für nächsten Buchstaben
+  b=pixel nach unten für nächsten Buchstaben
+  wenn bei rechtsbewegung am rechten bildrand, in der selben Zeile von vorn beginnen, ebenso bei unten
+  zielpixel: g=0, b=0
   """
+
+  image = Image.open(filepath, mode='r')
+  pixels = image.load()
+
+  x = 0
+  y = 0
+  text = ''
+
+  while True:  # Exits when g and b are 0
+    r, g, b, *_ = pixels[x, y]  # rgb(a)
+    text += chr(r)
+
+    if g == 0 and b == 0: break
+
+    x = (x + g) % image.width
+    y = (y + b) % image.height
+
+  return text
 
 def arukone(n: int):
   """
@@ -69,11 +94,12 @@ def arukone(n: int):
   muss immer 2 von jede zahl haben
   """
 
-  game = ARUKONE_GAMES[n]
-
-  for i in range(n / 2):
-    """algo hier"""
+  game = choice(ARUKONE_GAMES[n])
 
 
 if __name__ == '__main__':
-  print(wundertuete(3, 4, 2, 3))
+  # print(wundertuete(3, 4, 2, 3))
+
+  for i in range(1, 7):
+    for e in ('png', 'ppm', 'tiff'):
+      print(f'bild0{i}.{e}: ', st_egano(f'./St. Egano/bild0{i}.{e}'), '\n')
