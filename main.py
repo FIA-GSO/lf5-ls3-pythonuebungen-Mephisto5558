@@ -2,6 +2,9 @@
 # Press Umschalt+F10 to execute it or replace it with your code.
 
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+import math
+
 # ---------------------Aufgabe 1 ------------------------------------
 def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, r2_old: int = 10) -> tuple[int, int, int]:
   """
@@ -91,8 +94,6 @@ def heron_verfahren(area: float, threshold: float) -> float:
 # IMPLEMENT, IF NECESSARY, EXERCISE 4 HERE BUT USE A FUNCTION!
 def sqrt(a: int) -> float:
   """SQRT"""
-
-  import math
   return math.sqrt(a)
 
 # ---------------MANAGEMENT----------------------
