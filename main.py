@@ -49,7 +49,7 @@ def nim_game(matches: int = 31, max_per_turn:int=6):
 
   while matches > 0:
     if turn % 2:  # Player's turn
-      # Not less than 1, not more than `max_per_turn`
+      # Not less than 1, not more than `max_per_turn`, not more than available
       last_take = max(1, min(max_per_turn, matches, int(input(f'Nenne eine Zahl zwischen 1 und {min(max_per_turn, matches)}: '))))
       print(f'Du ziehst {last_take}.')
     elif turn:  # Computer's turn
