@@ -3,19 +3,26 @@
 
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 # ---------------------Aufgabe 1 ------------------------------------
-def compute_r2d2_population(steps: int) -> tuple[int, int, int]:
+def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, r2_old: int = 10) -> tuple[int, int, int]:
   """
-      Computes the r2d2 population for the given step amount
-  :param steps: amount of steps to compute the population (e.g.: 5)
-  :return: tuple of childs adults and old r2d2
-  """
+      Computes the r2d2 population for the given step amount:
+        First, they reproduce, then they age.
+      - every 2nd young r2d2's becomes adult (rest dies)
+      - every adult creates 4 young ones
+      - every senior creates 2 young ones
+      - every 3rd adult becomes senior (rest dies)
+      - seniors die
 
-  r2_young = 10
-  r2_adult = 10
-  r2_old = 10
+  :param steps: amount of steps to compute the population (e.g.: 5)
+  :param r2_young: start amount of young r2d2, default: 10
+  :param r2_adult: start amount of adult r2d2, default: 10
+  :param r2_old: start amount of old r2d2, default: 10
+
+  :return: tuple of childs, adults and old r2d2
+  """
 
   for _ in range(steps):
-    r2_newborns = int(r2_adult * 4 + r2_old * 2)
+    r2_newborns = int(r2_adult * 4 + r2_old * 2)  # newborns don't age in the same step
     r2_old = int(r2_adult / 3)
     r2_adult = int(r2_young / 2)
     r2_young = r2_newborns
@@ -23,9 +30,11 @@ def compute_r2d2_population(steps: int) -> tuple[int, int, int]:
   return (r2_young, r2_adult, r2_old)
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
-# IMPLEMENT YOUR SOLUTION FOR THE STEICHHOLZSPIEL HERE
-def nim_game():
-  """Streichholzsspiel"""
+def nim_game(max_turns: int = 31):
+  """
+  Play a game with a configurable max amount of turns
+
+  """
 
   computer = 0
   player = 0
@@ -33,7 +42,7 @@ def nim_game():
 
   player_last_take = 0
 
-  while computer + player < 31:
+  while computer + player < max_turns:
     if turn % 2 == 0:
       if turn == 0:
         print('Der Computer zieht 2.')
@@ -43,13 +52,13 @@ def nim_game():
         print(f'Der Computer zieht {num}.')
         computer += num
     else:
-      num = max(1, min(31 - computer - player, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, 31 - computer - player)}: '))))
+      num = max(1, min(max_turns - computer - player, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, max_turns - computer - player)}: '))))
       print(f'Du ziehst {num}.')
       player_last_take = num
       player += num
 
     turn += 1
-    print(f'Es liegen noch {31 - player - computer} Hölzer.')
+    print(f'Es liegen noch {max_turns - player - computer} Hölzer.')
 
   return 'computer' if turn % 2 else 'player'
 
