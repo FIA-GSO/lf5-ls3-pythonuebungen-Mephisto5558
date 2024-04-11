@@ -63,7 +63,7 @@ def nim_game(matches: int = 31, max_per_turn:int=6):
     turn += 1
     print(f'Es liegen noch {matches} Hölzer.')
 
-  return 'computer' if turn % 2 else 'player'
+  return 'player' if turn % 2 else 'computer'
 
 
 # ---------------------Aufgabe 3 Heron ------------------------------------
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
   # Aufgabe 2
   # TO BE IMPLEMENTED
-  print(f'Der Gewinner ist {nim_game()}!')
+  print(f'Der Gewinner ist {nim_game()}, denn der andere musste das letzte Hölzchen nehmen!')
 
   # Aufgabe 3
   print(
