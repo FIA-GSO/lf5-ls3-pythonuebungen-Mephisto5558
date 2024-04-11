@@ -25,9 +25,9 @@ def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, 
   """
 
   for _ in range(steps):
-    r2_newborns = int(r2_adult * 4 + r2_old * 2)  # newborns don't age in the same step
-    r2_old = int(r2_adult / 3)
-    r2_adult = int(r2_young / 2)
+    r2_newborns = math.floor(r2_adult * 4 + r2_old * 2)  # newborns don't age in the same step
+    r2_old = math.floor(r2_adult / 3)
+    r2_adult = math.floor(r2_young / 2)
     r2_young = r2_newborns
 
   return (r2_young, r2_adult, r2_old)
