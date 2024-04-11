@@ -53,7 +53,7 @@ def nim_game(matches: int = 31, max_per_turn: int = 6):
       last_take = max(1, min(max_per_turn, matches, int(input(f'Nenne eine Zahl zwischen 1 und {min(max_per_turn, matches)}: '))))
       print(f'Du ziehst {last_take}.')
     elif turn:  # Computer's turn
-      last_take = 7 - last_take
+      last_take = max_per_turn + 1 - last_take
       print(f'Der Computer zieht {last_take}.')
     else:  # Computer's first turn
       last_take = 2
