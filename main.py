@@ -33,35 +33,33 @@ def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, 
   return r2_young, r2_adult, r2_old
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
-def nim_game(max_turns: int = 31):
+def nim_game(matches: int = 31):
   """
   Play a game with a configurable max amount of turns
-
+  Taking more then 6 is not allowed.
   """
 
-  computer = 0
-  player = 0
   turn = 0
-
   player_last_take = 0
 
-  while computer + player < max_turns:
+  while matches > 0:
     if turn % 2 == 0:
       if turn == 0:
         print('Der Computer zieht 2.')
-        computer += 2
+        matches -= 2
       else:
         num = 7 - player_last_take
         print(f'Der Computer zieht {num}.')
-        computer += num
+        matches -= num
     else:
-      num = max(1, min(max_turns - computer - player, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, max_turns - computer - player)}: '))))
+      # Not more than 6, not less than 1
+      num = max(1, min(matches, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, matches)}: '))))
       print(f'Du ziehst {num}.')
       player_last_take = num
-      player += num
+      matches -= num
 
     turn += 1
-    print(f'Es liegen noch {max_turns - player - computer} Hölzer.')
+    print(f'Es liegen noch {matches} Hölzer.')
 
   return 'computer' if turn % 2 else 'player'
 
