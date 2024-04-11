@@ -40,24 +40,21 @@ def nim_game(matches: int = 31):
   """
 
   turn = 0
-  player_last_take = 0
+  last_take = 0
 
   while matches > 0:
-    if turn % 2 == 0:
-      if turn == 0:
-        print('Der Computer zieht 2.')
-        matches -= 2
-      else:
-        num = 7 - player_last_take
-        print(f'Der Computer zieht {num}.')
-        matches -= num
-    else:
+    if turn % 2: # Player's turn
       # Not more than 6, not less than 1
-      num = max(1, min(matches, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, matches)}: '))))
-      print(f'Du ziehst {num}.')
-      player_last_take = num
-      matches -= num
+      last_take = max(1, min(matches, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, matches)}: '))))
+      print(f'Du ziehst {last_take}.')
+    elif turn: # Computer's turn
+      last_take = 7 - last_take
+      print(f'Der Computer zieht {last_take}.')
+    else: # Computer's first turn
+      last_take = 2
+      print('Der Computer zieht 2.')
 
+    matches -= last_take
     turn += 1
     print(f'Es liegen noch {matches} Hölzer.')
 
