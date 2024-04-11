@@ -33,11 +33,11 @@ def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, 
   return r2_young, r2_adult, r2_old
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
-def nim_game(matches: int = 31, max_per_turn:int=6):
+def nim_game(matches: int = 31, max_per_turn: int = 6):
   """
   Play a game with a configurable max amount of turns
   Taking more then `max_per_turn` is not allowed.
-  
+
   :param matches: amount of matches, default: 31
   :param max_per_turn: amount of matches allowed to be taken each turn, default: 6
 
