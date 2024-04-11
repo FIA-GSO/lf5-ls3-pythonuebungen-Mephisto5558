@@ -33,24 +33,29 @@ def compute_r2d2_population(steps: int, r2_young: int = 10, r2_adult: int = 10, 
   return r2_young, r2_adult, r2_old
 
 # ---------------------Aufgabe 2 Streichholz------------------------------
-def nim_game(matches: int = 31):
+def nim_game(matches: int = 31, max_per_turn:int=6):
   """
   Play a game with a configurable max amount of turns
-  Taking more then 6 is not allowed.
+  Taking more then `max_per_turn` is not allowed.
+  
+  :param matches: amount of matches, default: 31
+  :param max_per_turn: amount of matches allowed to be taken each turn, default: 6
+
+  :return: the winner's name
   """
 
   turn = 0
   last_take = 0
 
   while matches > 0:
-    if turn % 2: # Player's turn
-      # Not more than 6, not less than 1
-      last_take = max(1, min(matches, 6, int(input(f'Nenne eine Zahl zwischen 1 und {min(6, matches)}: '))))
+    if turn % 2:  # Player's turn
+      # Not less than 1, not more than `max_per_turn`
+      last_take = max(1, min(max_per_turn, matches, int(input(f'Nenne eine Zahl zwischen 1 und {min(max_per_turn, matches)}: '))))
       print(f'Du ziehst {last_take}.')
-    elif turn: # Computer's turn
+    elif turn:  # Computer's turn
       last_take = 7 - last_take
       print(f'Der Computer zieht {last_take}.')
-    else: # Computer's first turn
+    else:  # Computer's first turn
       last_take = 2
       print('Der Computer zieht 2.')
 
